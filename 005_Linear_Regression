@@ -1,0 +1,4 @@
+Linear regression minimizes a loss funtion
+Linear regression chooses a coefficient for each feature variable
+Large coefficients can lead to overfitting
+Penalizing large coefficients:Regularization
