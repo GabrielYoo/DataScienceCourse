@@ -1,0 +1,115 @@
+Logistic regression
+  used for classfication 
+  logistic regression outputs probabilities
+  if the probability 'p' is greater than 0.5
+  the data is labeled '1'
+  if the probability 'p' is less than 0.5
+  the data is labeled '0'
+  logistic regression threshold = 0.5
+  Not specific to logistic regression
+    k-NN classifiers also have thresholds
+  what happens if we vary the threshold?
+
+# Import the necessary modules
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, classification_report
+
+# Create training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.4, random_state=42)
+
+# Create the classifier: logreg
+logreg = LogisticRegression()
+
+# Fit the classifier to the training data
+logreg.fit(X_train,y_train)
+
+# Predict the labels of the test set: y_pred
+y_pred = logreg.predict(X_test)
+
+# Compute and print the confusion matrix and classification report
+print(confusion_matrix(y_test, y_pred))
+print(classification_report(y_test, y_pred))
+
+
+
+ROC curve - evaluate it's performance by plotting an ROC curve
+
+ROC Curves summarize the trade-off between the true positive rate and false positive rate for a predictive model using different probability thresholds
+ROC curves are appropriate when the observations are balanced between each class, whereas precision-recall curves are appropriate for imbalanced datasets.
+False Positive - predict an event when there was no event
+False Negative - predict no event when in fact there was an event
+It is a plot of the false positive rate(x-axis) versus the true positive rate(y-axis) for a number of different candidate threshold values between 0.0 and 1.0.
+It plots the false alarm rate versus the hit rate. 
+The curves of different models can be compared directly in general or for different thresholds
+The area under the curve(AUC) can be used as a summary of the model skill
+Smaller values on the x-axis of the plot indicate lower false positives and higher true negatives
+Larger values on the y-axis of the plot indicate higher ture positives and lower false negatives
+A model with perfect skill is represented at a point [0.0 ,1.0]. A model with perfect skill is represented by a line that travels from the bottom left of the plot to the top left and then across the top to the top right.
+A model with no skill is represented at the point [0.5, 0.5]. A model with no skill at each threshold is represented by a diagonal line from the bottom left of the plot to the top right and has an AUC of 0.5.
+The AUC for the ROC can be calculated using the roc_auc_score() function.
+Like the roc_curve() function, the AUC function takes both the true outcomes (0,1) from the test set and the predicted probabilities for the 1 class. It returns the AUC score between 0.0 and 1.0 for no skill and perfect skill respectively.
+
+
+# Import necessary modules
+from sklearn.metrics import roc_curve
+
+# Compute predicted probabilities: y_pred_prob
+y_pred_prob = logreg.predict_proba(X_test)[:,1]
+
+# Generate ROC curve values: fpr, tpr, thresholds
+fpr,tpr,thresholds = roc_curve(y_test,y_pred_prob)
+
+# Plot ROC curve
+plt.plot([0, 1], [0, 1], 'k--')
+plt.plot(fpr,tpr)
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('ROC Curve')
+plt.show()
+
+the y-axis(True positive rate) is also known as recall.
+
+
+Precision-Recall curves summarize the trade-off between the true positive rate and the positive predective value for a predictive model using different probability thresholds
+ROC curves are appropriate when the observations are balanced between each class, whereas precision-recall curves are appropriate for imbalanced datasets.
+Precision is a ratio of the number of true positives divided by the sum of the true positives and false positives. It describes how good a model is at predicting the positive class.
+Precision is referred to as the positive predictive value.
+
+Recall is calculated as the ratio of the number of true positives divided by the sum of the true positives and the false negatives.
+Recall is the same as sensitivity
+
+Reveiwing both precision and recall is useful in cases where there is an imbalance in the observations between the two classes.
+There are many examples of no event(class 0) and only a few examples of an event (class 1)
+The no-skill line is defined by the total number of positive cases divide by the total number of positive and negative cases. For a dataset with an equal number of positive and negative cases, this is a straight line at 0.5. Points above this line show skill.
+A model with perfect skill is depicted as a point at [1.0,1.0]. A skilful model is represented by a curve that bows towards [1.0,1.0] above the flat line of no skill.
+
+When to Use ROC vs. Precision-Recall Curves?
+Generally, the use of ROC curves and precision-recall curves are as follows:
+
+ROC curves should be used when there are roughly equal numbers of observations for each class.
+Precision-Recall curves should be used when there is a moderate to large class imbalance.
+
+
+Area under the ROC curve(AUC)
+Larger area under the ROC curve = better model, which is good for classfication
+
+# Import necessary modules
+from sklearn.metrics import roc_auc_score
+from sklearn.model_selection import cross_val_score
+
+# Compute predicted probabilities: y_pred_prob
+y_pred_prob = logreg.predict_proba(X_test)[:,1]
+
+# Compute and print AUC score
+print("AUC: {}".format(roc_auc_score(y_test,y_pred_prob)))
+
+# Compute cross-validated AUC scores: cv_auc
+cv_auc = cross_val_score(logreg,X,y,cv=5,scoring='roc_auc')
+
+# Print list of AUC scores
+print("AUC scores computed using 5-fold cross-validation: {}".format(cv_auc))
+
+
+
+
+
