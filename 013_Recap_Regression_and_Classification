@@ -1,0 +1,69 @@
+Both regression and classification problems
+
+Underfitting and overfitting
+train_test_split
+cross-validation
+grid search
+Regularization
+lasso
+ridge regression
+data preprocessing
+
+
+Predictive modeling is the problem of developing a model using historical data to make a prediction on new data where we do not have the answer.
+Predictive modeling can be described as the mathematical problem of approximating a mapping function (f) from input variables (X) to output variables (y). 
+This is called the problem of function approximation.
+Classification predictive modeling is the task of approximating a mapping function (f) from input variables (X) to discrete output variables (y).
+The output variables are often called labels or categories. The mapping function predicts the class or category for a given observation.
+
+A classification problem requires that examples be classified into one of two or more classes.
+A classification can have real-valued or discrete input variables.
+A problem with two classes is often called a two-class or binary classification problem.
+A problem with more than two classes is often called a multi-class classification problem.
+A problem where an example is assigned multiple classes is called a multi-label classification problem.
+
+It is common for classification models to predict a continuous value as the probability of a given example belonging to each output class.
+The probabilities can be interpreted as the likelihood or confidence of a given example belonging to each class. 
+A predicted probability can be converted into a class value by selecting the class label that has the highest probability.
+There are many ways to estimate the skill of a classification predictive model, but perhaps the most common is to calculate the classification accuracy.
+The classification accuracy is the percentage of correctly classified examples out of all predictions made.
+
+Regression predictive modeling is the task of approximating a mapping function (f) from input variables (X) to a continuous output variable (y).
+A continuous output variable is a real-value, such as an integer or floating point value. These are often quantities, such as amounts and sizes.
+A regression problem requires the prediction of a quantity.
+A regression can have real valued or discrete input variables.
+A problem with multiple input variables is often called a multivariate regression problem.
+A regression problem where input variables are ordered by time is called a time series forecasting problem.
+
+Because a regression predictive model predicts a quantity, the skill of the model must be reported as an error in those predictions.
+There are many ways to estimate the skill of a regression predictive model, but perhaps the most common is to calculate the root mean squared error, abbreviated by the acronym RMSE.
+
+An algorithm that is capable of learning a regression predictive model is called a regression algorithm.
+Some algorithms have the word “regression” in their name, such as linear regression and logistic regression, which can make things confusing because linear regression is a regression algorithm whereas logistic regression is a classification algorithm.
+
+Classification predictive modeling problems are different from regression predictive modeling problems.
+Classification is the task of predicting a discrete class label.
+Regression is the task of predicting a continuous quantity.
+
+There is some overlap between the algorithms for classification and regression; for example:
+A classification algorithm may predict a continuous value, but the continuous value is in the form of a probability for a class label.
+A regression algorithm may predict a discrete value, but the discrete value in the form of an integer quantity.
+
+Some algorithms can be used for both classification and regression with small modifications, such as decision trees and artificial neural networks.
+Some algorithms cannot, or cannot easily be used for both problem types, such as linear regression for regression predictive modeling and logistic regression for classification predictive modeling.
+
+Importantly, the way that we evaluate classification and regression predictions varies and does not overlap, for example:
+
+Classification predictions can be evaluated using accuracy, whereas regression predictions cannot.
+Regression predictions can be evaluated using root mean squared error, whereas classification predictions cannot.
+
+In some cases, it is possible to convert a regression problem to a classification problem. For example, the quantity to be predicted could be converted into discrete buckets.
+
+For example, amounts in a continuous range between $0 and $100 could be converted into 2 buckets:
+
+Class 0: $0 to $49
+Class 1: $50 to $100
+
+That predictive modeling is about the problem of learning a mapping function from inputs to outputs called function approximation.
+That classification is the problem of predicting a discrete class label output for an example.
+That regression is the problem of predicting a continuous quantity output for an example.
