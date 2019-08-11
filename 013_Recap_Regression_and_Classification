@@ -67,3 +67,10 @@ Class 1: $50 to $100
 That predictive modeling is about the problem of learning a mapping function from inputs to outputs called function approximation.
 That classification is the problem of predicting a discrete class label output for an example.
 That regression is the problem of predicting a continuous quantity output for an example.
+
+In retail,
+Sales Forecasting,
+Demand Forecasting,
+Customer Behavior
+Classfication for store and customer type
+Clustering
