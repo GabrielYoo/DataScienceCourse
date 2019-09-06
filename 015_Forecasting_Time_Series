@@ -1,2 +1,7 @@
 Trend
 Seasonality
+White noise
+Stationarity - the distribution of the data doesn't change with time
+  Trend stationary: Trend is zero
+  variance is constant
+  autocorrelation is constant
