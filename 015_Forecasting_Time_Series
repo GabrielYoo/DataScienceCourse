@@ -32,3 +32,8 @@ fig, ax = plt.subplots()
 candy_train.plot(ax=ax)
 candy_test.plot(ax=ax)
 plt.show()
+
+
+Applying the adfuller test
+from statsmodels.tsa.stattools import adfuller
+results = adfuller(df['close'])
