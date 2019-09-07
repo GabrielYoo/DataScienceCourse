@@ -5,3 +5,30 @@ Stationarity - the distribution of the data doesn't change with time
   Trend stationary: Trend is zero
   variance is constant
   autocorrelation is constant
+df = pd.read_csv('time_ser.csv',index_col='date',parse_dates=True)
+df_train = df.loc[:'2018']
+df_test = df.loc['2019':]
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Load in the time series
+candy = pd.read_csv('candy_production.csv',
+            index_col='date',
+            parse_dates=True)
+
+# Plot and show the time series on axis ax
+fig, ax = plt.subplots()
+candy.plot(ax=ax)
+plt.show()
+
+# Split the data into a train and test set
+candy_train = candy.loc[:'2006']
+candy_test = candy.loc['2007':]
+
+# Create an axis
+fig, ax = plt.subplots()
+
+# Plot the train and test sets on the axis ax
+candy_train.plot(ax=ax)
+candy_test.plot(ax=ax)
+plt.show()
